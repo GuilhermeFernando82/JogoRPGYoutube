@@ -24,7 +24,11 @@ public class visaovilao : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private Vector3 dir;
-    
+	public Rigidbody2D bala;
+	private WaitForSeconds tempo = new WaitForSeconds(1.5f);
+	private bool atk;
+
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -37,6 +41,15 @@ public class visaovilao : MonoBehaviour
 
         return new Vector3(Mathf.Sin(angDeg * Mathf.Deg2Rad), Mathf.Cos(angDeg * Mathf.Deg2Rad),0);
     }
+	IEnumerator Tiro(){
+		atk = true;
+		Instantiate (bala, transform.position, Quaternion.identity);
+		print ("Tiro");
+		yield return tempo;
+		atk = false;
+
+	
+	}
  
     private void Update()
     {
@@ -71,6 +84,9 @@ public class visaovilao : MonoBehaviour
             if (hit.collider.tag == "Player")
             {
                 alvo = player.transform.position;
+				if (!atk) {
+					StartCoroutine ("Tiro");
+				}
             }
            
         }else
