@@ -8,6 +8,7 @@ public class MoveSkill : MonoBehaviour {
 	private Vector2 dir;
 	private Transform alvo;
 	private float vel;
+	private GameObject hud;
 	// Use this for initialization
 	void Start () {
 		bala = GetComponent<Rigidbody2D>();
@@ -22,7 +23,9 @@ public class MoveSkill : MonoBehaviour {
 	}
 	private void OnTriggerEnter2D(Collider2D col){
 		if(col.CompareTag("Player")){
-			Destroy (gameObject);
+			hud = GameObject.FindWithTag ("Player");
+			hud.GetComponent<Sangue> ().VidaDoPersonagem -= 10;
+			//Destroy (gameObject);
 			
 		}	
 	}

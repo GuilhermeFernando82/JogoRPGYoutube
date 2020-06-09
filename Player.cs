@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
 	[SerializeField]
+	public Interact foco;
 	public Vector2 direcao;
     public float speed;
     public Animator anim;
@@ -82,6 +83,13 @@ public class Player : MonoBehaviour
 
 			}
 		}
+		if(Input.GetKeyDown(KeyCode.J)){
+			print("Apertou");
+			if(foco != null)
+			{
+				foco.OnFocus();
+			}
+		}
 
         inputplayer();
         
@@ -136,4 +144,13 @@ public class Player : MonoBehaviour
         anim.SetFloat("x", dir.x); 
         anim.SetFloat("y", dir.y);
     }
+	public void OnTriggerEnter2D(Collider2D other) {
+		if(other.CompareTag("Item"))
+		{
+			foco = other.GetComponent<Interact>();
+		}
+	}
+	private void OnTriggerExit2D(Collider2D other) {
+		foco = null;
+	}
 }

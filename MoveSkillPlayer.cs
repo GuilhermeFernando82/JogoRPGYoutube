@@ -16,7 +16,7 @@ public class MoveSkillPlayer : MonoBehaviour {
 		bala = GetComponent<Rigidbody2D>();
 		//alvo = GameObject.FindWithTag("Player").GetComponent<Transform>();
 		vel = -4;
-
+		
 	}
 
 	// Update is called once per frame
@@ -26,10 +26,5 @@ public class MoveSkillPlayer : MonoBehaviour {
 		transform.position += Vector3.down * 0.3f;
 		//bala.velocity = dir.normalized * vel;
 	}
-	private void OnTriggerEnter2D(Collider2D col){
-		if(col.CompareTag("Inimigo")){
-			Destroy (gameObject);
-
-		}	
-	}
+	
 }

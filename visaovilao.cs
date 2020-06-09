@@ -28,6 +28,8 @@ public class visaovilao : MonoBehaviour
 	private WaitForSeconds tempo = new WaitForSeconds(1.5f);
 	private bool atk;
 
+    public float life = 100;
+
 
     private void Start()
     {
@@ -61,6 +63,9 @@ public class visaovilao : MonoBehaviour
         {
         anim.SetFloat("x", dir.x);
         anim.SetFloat("y", dir.y);
+        }
+        if(life <= 0){
+            Destroy(gameObject);
         }
         RaioJogador();
     }
@@ -113,5 +118,11 @@ public class visaovilao : MonoBehaviour
         }
  
         Debug.DrawLine(transform.position, alvo, Color.green);
+    }
+    private void OnTriggerStay2D(Collider2D other) {
+            if(other.CompareTag("SkillPlayer"))
+            {
+                life += -5;
+            }  
     }
 }
