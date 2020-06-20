@@ -16,6 +16,7 @@ public class Sangue : MonoBehaviour {
 	}
 	void Start (){
 		VidaDoPersonagem = VidaCheia;
+		
 	}
 	void Update (){
 		/*if (VidaDoPersonagem >= VidaCheia) {
@@ -26,6 +27,7 @@ public class Sangue : MonoBehaviour {
 		if (VidaDoPersonagem <= 0) {
 			Application.LoadLevel("GameOver");
 		}
+		DontDestroyOnLoad(this.gameObject);
 	}
 	void OnGUI (){
 		GUI.DrawTexture (new Rect (Screen.width / 25, Screen.height / 15, Screen.width / 5.5f/VidaCheia*VidaDoPersonagem, Screen.height / 25), Sangue1);
