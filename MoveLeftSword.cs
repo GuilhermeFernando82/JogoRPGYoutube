@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Moveleft : MonoBehaviour {
+public class MoveLeftSword : MonoBehaviour {
 
+	// Use this for initialization
 	[SerializeField]
 	private Rigidbody2D bala;
 	private Vector2 dir;
 	private Transform alvo;
-	private float vel;
+	public float vel;
 	public GameObject play;
-	public float countdown = 0.2f;
+	public float countdown = 0.5f;
 	// Use this for initialization
 	void Start () {
 		bala = GetComponent<Rigidbody2D>();
 		//alvo = GameObject.FindWithTag("Player").GetComponent<Transform>();
-		vel = 0.3f;	
+		vel = -4;
 
 	}
 
@@ -23,15 +24,19 @@ public class Moveleft : MonoBehaviour {
 	void FixedUpdate () {
 		//transform.position += Vector3.up * 0.3f;
 
-		transform.position += Vector3.left * vel;
+		transform.position += Vector3.zero;
+		countdown -= Time.deltaTime;
+		if(countdown <= 0.0f){
+			Destroy (gameObject);
+		}
+		
 		//bala.velocity = dir.normalized * vel;
 	}
-	private void OnTriggerEnter2D(Collider2D col){
-		if(col.CompareTag("Inimigo") || col.CompareTag("parede")){
-			//countdown -= Time.deltaTime;
-			//if(countdown <= 0.0f){
-			  Destroy (gameObject);
-			//}
+	private void OnTriggerStay2D(Collider2D col){
+		if(col.CompareTag("Player")){
+				
+			
+
 		}	
 	}
 }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class MoveSkill : MonoBehaviour {
-	[SerializeField]
+public class MoveSkillEnemy : MonoBehaviour {
+[SerializeField]
 	private Rigidbody2D bala;
 	private Vector2 dir;
 	private Transform alvo;
@@ -26,12 +26,10 @@ public class MoveSkill : MonoBehaviour {
 		if(col.CompareTag("Player")){
 			float loselife;
 			hud = GameObject.FindWithTag ("Player");
-			loselife = hud.GetComponent<Sangue> ().VidaDoPersonagem -= 10;
+			loselife = hud.GetComponent<Sangue> ().VidaDoPersonagem -= 5;
 			life.GetComponent<Text>().text = loselife.ToString();
 			//Destroy (gameObject);
 			
 		}	
 	}
-		
-
 }

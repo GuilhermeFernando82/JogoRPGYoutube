@@ -7,6 +7,7 @@ public class Slot : MonoBehaviour {
 
 	public Button RemoveBtn;
 	public Itens Itens;
+	
 	// Use this for initialization
 	void Start () {
 		Icon = transform.GetChild(1).GetComponent<Image>();
@@ -28,7 +29,27 @@ public class Slot : MonoBehaviour {
 	}
 	public void ChamaRemoveBtn()
 	{
-		InventoryControll.instance.RemoveItem (Itens);
+		if(Itens.name == "SwordOfIce"){
+			Player.instance.SwordOfIce = false;
+			Sangue.instance.Atk.text = "0";
+			InventoryControll.instance.RemoveItem (Itens);
+			
+		}else if(Itens.name == "Sword"){
+			Player.instance.SwordOfFire = false;
+			Sangue.instance.Atk.text = "0";
+			InventoryControll.instance.RemoveItem (Itens);
+
+		}else{
+			InventoryControll.instance.RemoveItem (Itens);
+		}
+		
+			
+
+		
+		
+		
+		
+		
 	}
 	public void usarItem()
 	{

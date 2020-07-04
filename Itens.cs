@@ -11,17 +11,49 @@ public class Itens : ScriptableObject {
 	public bool canTakeItem;
 	public bool teste;
 	public int id;
-	
+	public float atk;
+	public GameObject caixa;
+
 	// Use this for initialization
+	public static Itens instance;
+
 	void Start () {
 		
 	}
 	public virtual void usar(){
-		Sangue.instance.VidaDoPersonagem = 100;
-		InventoryControll.instance.RemoveItemPerma (this);
+				if(this.name == "Potion")
+				{
+					Sangue.instance.VidaDoPersonagem = 100;
+					InventoryControll.instance.RemoveItemPerma (this);
+				}else{
+					
+				}
+				if(this.name == "Sword" && Player.instance.SwordOfIce == false){
+					Player.instance.SwordOfFire = true;
+					atk = 15;
+					Sangue.instance.Atk.text = atk.ToString();
+					InventoryControll.instance.AdicionaItemP(this);
+					InventoryControll.instance.RemoveItemPerma (this);
+					
+				}else if(Player.instance.SwordOfIce == true && this.name != "Potion"){
+						UInventory.instance.caixa.gameObject.SetActive(true);
+						UInventory.instance.message.text = "Desequipe a arma principal para equipar outra";
+				}
+				if(this.name == "SwordOfIce" && Player.instance.SwordOfFire == false){
+					Player.instance.SwordOfIce = true;
+					atk = 10;
+					Sangue.instance.Atk.text = atk.ToString();
+					InventoryControll.instance.AdicionaItemP(this);
+					InventoryControll.instance.RemoveItemPerma (this);
+				}else if(Player.instance.SwordOfFire == true && this.name != "Potion"){
+						UInventory.instance.caixa.gameObject.SetActive(true);
+						UInventory.instance.message.text = "Desequipe a arma principal para equipar outra";
+				}
 	}
+	
 	public void RemoveI(){
 		InventoryControll.instance.RemoveItem (this);
+		
 	}
 	/*public void AddItem(int amountToAdd = 1){
 		amount += amountToAdd;

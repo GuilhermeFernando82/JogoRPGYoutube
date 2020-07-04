@@ -11,10 +11,12 @@ public class Player : MonoBehaviour
     public float speed;
     public Animator anim;
 	private bool atk;
+	
 	public GameObject MagiaDown;
 	public GameObject MagiaUp;
 	public GameObject MagiaLeft;
 	public GameObject MagiaRigth;
+	public GameObject SwordOfFireLeft;
 
 	public GameObject MagiaDownM;
 	public GameObject MagiaUpM;
@@ -25,7 +27,7 @@ public class Player : MonoBehaviour
 	public GameObject MagiaUp2;
 	public GameObject MagiaLeft2;
 	public GameObject MagiaRigth2;
-
+    public GameObject SwordOfFiriRight;
 	private WaitForSeconds tempo = new WaitForSeconds(1.5f);
 	public GameObject obj;
 	public Transform firepoint;
@@ -36,10 +38,23 @@ public class Player : MonoBehaviour
 	public bool baixo;
 	public bool esquerda;
 	public bool rgt;
+	public static Player instance;
+	public bool SwordOfFire;
+	public bool SwordOfIce;
+	public GameObject SwordOfIceRight;
+	public GameObject SwordOfIceLeft;
+	
+	private void Awake(){
+		if (instance == null) {
+			instance = this;
+		}
+	}
     void Start()
     {
         direcao = Vector2.zero;
         speed = 5;
+		
+		
     }
 	IEnumerator Tiro(){
 		atk = true;
@@ -63,34 +78,46 @@ public class Player : MonoBehaviour
             anim.SetLayerWeight(1,0);
         }
 		if (baixo) {
-			if(Input.GetKeyUp(KeyCode.Alpha1)){
+			if(Input.GetKeyUp(KeyCode.Alpha1) && Sangue.instance.lvll == 1){
 				obj = Instantiate (MagiaDown, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
+				
 
 			}
-			if(Input.GetKeyUp(KeyCode.Alpha2)){
+			if(Input.GetKeyUp(KeyCode.Alpha2) && Sangue.instance.lvll == 2){
 				obj = Instantiate (MagiaDown2, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
-
 			}
 			if(Input.GetKeyUp(KeyCode.Alpha3)){
 				obj = Instantiate (MagiaDownM, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
 
+
+			}
+			
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFiriRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfIce == true){
+				obj = Instantiate (SwordOfIceLeft, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
 			}
 
 		}
 		if (cima) {
-			if(Input.GetKeyUp(KeyCode.Alpha1)){
+			if(Input.GetKeyUp(KeyCode.Alpha1) && Sangue.instance.lvll == 1){
 				obj = Instantiate (MagiaUp, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
 
 			}
-			if(Input.GetKeyUp(KeyCode.Alpha2)){
+			if(Input.GetKeyUp(KeyCode.Alpha2) && Sangue.instance.lvll == 2){
 				obj = Instantiate (MagiaUp2, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
@@ -102,15 +129,25 @@ public class Player : MonoBehaviour
 				rb.velocity = -transform.forward * vel;
 
 			}
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFiriRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfIce == true){
+				obj = Instantiate (SwordOfIceRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
 		}
 		if (esquerda) {
-			if(Input.GetKeyUp(KeyCode.Alpha1)){
+			if(Input.GetKeyUp(KeyCode.Alpha1) && Sangue.instance.lvll == 1){
 				obj = Instantiate (MagiaLeft, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
 
 			}
-			if(Input.GetKeyUp(KeyCode.Alpha2)){
+			if(Input.GetKeyUp(KeyCode.Alpha2) && Sangue.instance.lvll == 2){
 				obj = Instantiate (MagiaLeft2, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
@@ -122,15 +159,25 @@ public class Player : MonoBehaviour
 				rb.velocity = -transform.forward * vel;
 
 			}
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFireLeft, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfIce == true){
+				obj = Instantiate (SwordOfIceLeft, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
 		}
 		if (rgt) {
-			if(Input.GetKeyUp(KeyCode.Alpha1)){
+			if(Input.GetKeyUp(KeyCode.Alpha1) && Sangue.instance.lvll == 1){
 				obj = Instantiate (MagiaRigth, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
 
 			}
-			if(Input.GetKeyUp(KeyCode.Alpha2)){
+			if(Input.GetKeyUp(KeyCode.Alpha2) && Sangue.instance.lvll == 2){
 				obj = Instantiate (MagiaRigth2, transform.position, Quaternion.identity);
 				rb = obj.GetComponent<Rigidbody2D>();
 				rb.velocity = -transform.forward * vel;
@@ -142,6 +189,18 @@ public class Player : MonoBehaviour
 				rb.velocity = -transform.forward * vel;
 
 			}
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFiriRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+			if(Input.GetKeyUp(KeyCode.Space) && SwordOfIce == true){
+				obj = Instantiate (SwordOfIceRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+			
+			
 		}
 		if(Input.GetKeyDown(KeyCode.J)){
 			print("Apertou");
@@ -158,7 +217,6 @@ public class Player : MonoBehaviour
     }
     void inputplayer()
     {
-		
 		direcao = Vector2.zero;   
         if(Input.GetKey(KeyCode.UpArrow)){
             direcao += Vector2.up;
@@ -166,7 +224,6 @@ public class Player : MonoBehaviour
 			esquerda = false;
 			baixo = false;
 			rgt = false;
-
         }
         if(Input.GetKey(KeyCode.DownArrow)){
             direcao += Vector2.down;
@@ -174,7 +231,6 @@ public class Player : MonoBehaviour
 			esquerda = false;
 			cima = false;
 			rgt = false;
-
         }
         if(Input.GetKey(KeyCode.LeftArrow)){
             direcao += Vector2.left;
@@ -182,7 +238,6 @@ public class Player : MonoBehaviour
 			baixo = false;
 			cima = false;
 			rgt = false;
-
         }
         if(Input.GetKey(KeyCode.RightArrow)){
             direcao += Vector2.right;
@@ -190,8 +245,6 @@ public class Player : MonoBehaviour
 			esquerda = false;
 			baixo = false;
 			cima = false;
-
-
         }
 	
 
@@ -199,6 +252,34 @@ public class Player : MonoBehaviour
 				
 			//}
     }
+	public void direita1(){
+			if(Input.GetKeyUp(KeyCode.Alpha4) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFiriRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+	}
+	public void esquerda1(){
+			if(Input.GetKeyUp(KeyCode.Alpha4) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFireLeft, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+	}
+	public void cima1(){
+			if(Input.GetKeyUp(KeyCode.Alpha4) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFiriRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+	}
+	public void baixo1(){
+			if(Input.GetKeyUp(KeyCode.Alpha4) && SwordOfFire == true){
+				obj = Instantiate (SwordOfFiriRight, transform.position, Quaternion.identity);
+				rb = obj.GetComponent<Rigidbody2D>();
+				rb.velocity = -transform.forward * vel;
+			}
+	}
     void animations(Vector2 dir){
         anim.SetLayerWeight(1,1);
         anim.SetFloat("x", dir.x); 

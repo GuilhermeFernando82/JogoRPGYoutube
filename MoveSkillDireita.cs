@@ -14,7 +14,7 @@ public class MoveSkillDireita : MonoBehaviour {
 	void Start () {
 		bala = GetComponent<Rigidbody2D>();
 		//alvo = GameObject.FindWithTag("Player").GetComponent<Transform>();
-		vel = -4;
+		vel = 0.3f;
 
 	}
 
@@ -26,9 +26,9 @@ public class MoveSkillDireita : MonoBehaviour {
 		//bala.velocity = dir.normalized * vel;
 	}
 	private void OnTriggerEnter2D(Collider2D col){
-		if(col.CompareTag("Inimigo")){
+		if(col.CompareTag("Inimigo") || col.CompareTag("parede")){
 			Destroy (gameObject);
 
-		}	
+		}
 	}
 }

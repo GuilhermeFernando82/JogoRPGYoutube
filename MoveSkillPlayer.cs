@@ -9,13 +9,13 @@ public class MoveSkillPlayer : MonoBehaviour {
 	private Rigidbody2D bala;
 	private Vector2 dir;
 	private Transform alvo;
-	public float vel;
+	private float vel;
 	public GameObject play;
 	// Use this for initialization
 	void Start () {
 		bala = GetComponent<Rigidbody2D>();
 		//alvo = GameObject.FindWithTag("Player").GetComponent<Transform>();
-		vel = -4;
+		vel = 0.3f;
 		
 	}
 
@@ -23,8 +23,14 @@ public class MoveSkillPlayer : MonoBehaviour {
 	void FixedUpdate () {
 		//transform.position += Vector3.up * 0.3f;
 
-		transform.position += Vector3.down * 0.3f;
+		transform.position += Vector3.down * vel;
 		//bala.velocity = dir.normalized * vel;
+	}
+	private void OnTriggerEnter2D(Collider2D col){
+		if(col.CompareTag("Inimigo") || col.CompareTag("parede")){
+			Destroy (gameObject);
+
+		}	
 	}
 	
 }

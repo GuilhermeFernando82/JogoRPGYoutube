@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 [RequireComponent(typeof(CircleCollider2D))]
 public class ItemColetado : Interact {
 	public Itens item;
 	public CircleCollider2D col;
 	public bool  foipego;
-
+	public Text message;
 	// Use this for initialization
 	
 	void Start () {

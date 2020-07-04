@@ -68,6 +68,10 @@ public class visaovilao : MonoBehaviour
             Destroy(gameObject);
         }
         RaioJogador();
+        if(life <= 0){
+            Sangue.instance.experience += 35;
+            
+        }
     }
  
     private void OnDrawGizmosSelected()
@@ -123,6 +127,15 @@ public class visaovilao : MonoBehaviour
             if(other.CompareTag("SkillPlayer"))
             {
                 life += -5;
-            }  
+            } 
+            if(other.CompareTag("SkillSword"))
+            {
+                life += -2;
+            }
+             if(other.CompareTag("SkillSwordIce"))
+            {
+                life += -1;
+            }      
     }
+     
 }

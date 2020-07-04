@@ -19,7 +19,9 @@ public class InventoryControll : MonoBehaviour {
 	private int QtSlot;
 	public GameObject[] objetoCol;
 	public GameObject heroi;
+	
     public List<Itens> inventoryItens = new List<Itens> ();
+	public List<Itens> inventoryItensP = new List<Itens> ();
 
     // Update is called once per frame
     void Update () {
@@ -37,6 +39,18 @@ public class InventoryControll : MonoBehaviour {
 		}
 		return true;
 	}
+	public bool AdicionaItemP(Itens i){
+		if(inventoryItensP.Count >= QtSlot){
+			
+			return false;
+		}
+
+		inventoryItensP.Add (i);
+		if (itemAlteradoE != null) {
+			itemAlteradoE ();
+		}
+		return true;
+	}
 	public void RemoveItemPerma(Itens i)
 	{
 		inventoryItens.Remove (i);
@@ -46,10 +60,14 @@ public class InventoryControll : MonoBehaviour {
 	}
 	public void RemoveItem(Itens i){
 		inventoryItens.Remove (i);
-		Instantiate(objetoCol[i.id], new Vector2(heroi.transform.position.x,heroi.transform.position.y),Quaternion.identity);
+		inventoryItensP.Remove (i);
+		Instantiate(objetoCol[i.id], new Vector3(heroi.transform.position.x,heroi.transform.position.y,heroi.transform.position.z + 1),Quaternion.identity);
 		if (itemAlteradoE != null) {
 			itemAlteradoE ();
 		}
+	}
+	public void Equipar(){
+		print("Equipando");
 	}
 	/*public void AddIten(Itens Item){
 		/*bool foundItem = false;
